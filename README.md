@@ -42,15 +42,42 @@ access API endpoints via a tool such as https://www.postman.com/.
 
 Sample API requests with ngrok:
 
-Create a user ```POST http://910e5b29c3e6.ngrok.io/api/v1/users?username=Wizard&email=wizard@email.com&password=current_or_new_password&password_confirmation=current_or_new_password```
-Create a chat room ```POST http://910e5b29c3e6.ngrok.io/api/v1/chat_rooms?name=Fun%20Convo```
-Send a message ```POST http://910e5b29c3e6.ngrok.io/api/v1/messages?username=Wizard&chat_room_name=FunConvo&message=Hello%20everyone!```
-View persistent messages in a specific chat room ```GET http://910e5b29c3e6.ngrok.io/api/v1/chat_rooms/1```
-Search for a user ```GET http://910e5b29c3e6.ngrok.io/api/v1/users?search_username=AName```
-Search for a chat room ```GET http://910e5b29c3e6.ngrok.io/api/v1/chat_rooms?search_chat_room=AName```
-View a specific user's stats and profile ```GET http://910e5b29c3e6.ngrok.io/api/v1/users/1```
-Update a user's account info ```PUT http://910e5b29c3e6.ngrok.io/api/v1/users/1?username=NewUsername&email=new@email.com&password=current_or_new_password&password_confirmation=current_or_new_password```
-Update a chat room's name ```PUT http://910e5b29c3e6.ngrok.io/api/v1/chat_rooms/1?name=NewName```
+Create a user:
+```
+POST http://910e5b29c3e6.ngrok.io/api/v1/users?username=Wizard&email=wizard@email.com&password=current_or_new_password&password_confirmation=current_or_new_password
+```
+Create a chat room:
+```
+POST http://910e5b29c3e6.ngrok.io/api/v1/chat_rooms?name=Fun%20Convo
+```
+Send a message:
+```
+POST http://910e5b29c3e6.ngrok.io/api/v1/messages?username=Wizard&chat_room_name=FunConvo&message=Hello%20everyone!
+```
+View persistent messages in a specific chat room:
+```
+GET http://910e5b29c3e6.ngrok.io/api/v1/chat_rooms/1
+```
+Search for a user:
+```
+GET http://910e5b29c3e6.ngrok.io/api/v1/users?search_username=AName
+```
+Search for a chat room:
+```
+GET http://910e5b29c3e6.ngrok.io/api/v1/chat_rooms?search_chat_room=AName
+```
+View a specific user's stats and profile:
+```
+GET http://910e5b29c3e6.ngrok.io/api/v1/users/1
+```
+Update a user's account info:
+```
+PUT http://910e5b29c3e6.ngrok.io/api/v1/users/1?username=NewUsername&email=new@email.com&password=current_or_new_password&password_confirmation=current_or_new_password
+```
+Update a chat room's name:
+```
+PUT http://910e5b29c3e6.ngrok.io/api/v1/chat_rooms/1?name=NewName
+```
 
 4. To run tests, enter the following command into you CLI (replacing :controller_name_spec with test file path):
 ```
