@@ -1,0 +1,55 @@
+<div class="row mt-3 mb-3">
+  <div class="col-3">
+    <h1 class=""><%= @chat_room.name %></h1>
+    <p><%= link_to 'Edit', edit_chat_room_path(@chat_room) %></p>
+  </div>
+  <div class="col-3 text-left">
+    <p><strong># of Users:</strong> <%= @user_count %></p>
+  </div>
+  <div class="col-3 text-left">
+    <p><strong># of Messages:</strong> <%= @message_count %></p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-3">
+    <%= render partial: 'chat_rooms' %>
+  </div>
+
+  <div class="col">
+    <div class="conversation" data-channel-subscribe="chat-room" data-chat-room-id="<%= @chat_room.id %>">
+      <% @messages.each do |message| %>
+        <div class="message-text mt-1">
+          <h5 class="p-2"><%= message.user.username %>:</h5>
+          <p class="p-2"><%= message.content %></p>
+          <div class="text-right">
+            <small class="p-2"><%= message.created_at.strftime('%k:%M - %d/%m/%Y') %></small>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- messages#new form -->
+    <%= form_for @message, remote: true do |form| %>
+      <div class="input-group mb-3">
+        <%= form.text_field :content, class: 'form-control' %>
+
+        <div class="input-group-append">
+          <%= form.submit 'Send', class: 'btn btn-primary' %>
+        </div>
+      </div>
+      <%= form.hidden_field :chat_room_id, value: @chat_room.id %>
+    <% end %>
+  </div>
+</div>
+
+<!-- Websocket will stream data into here based on data-attrs -->
+<div class="d-none conversation" data-role="message-template">
+  <div class="message-text mt-1">
+    <h5 class="p-2" data-role="username"></h5>
+    <p class="p-2" data-role="message-content"></p>
+    <div class="text-right">
+      <small class="p-2" data-role="message-date"></small>
+    </div>
+  </div>
+</div>

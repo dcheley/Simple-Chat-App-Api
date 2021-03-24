@@ -1,0 +1,13 @@
+<h1 class="mt-3 mb-3">All Users' Stats:</h1>
+
+<% if !@users.empty? %>
+  <% @users.each_with_index do |user, index| %>
+    <div class="mt-3">
+      <h5><%= link_to "#{index+1}. #{user.username}", user_path(user) %></h5>
+      <p><strong># of Chat Rooms:</strong> <%= user.messages.pluck(:chat_room_id).uniq.count %></p>
+      <p><strong># of Messages Sent:</strong> <%= user.messages.count %></p>
+    </div>
+  <% end %>
+<% else %>
+  <h5>No users found</h5>
+<% end %>
