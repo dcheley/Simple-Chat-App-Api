@@ -20,7 +20,7 @@ RSpec.describe Api::V1::ChatRoomsController, type: :controller do
 
   describe 'POST /api/v1/chat_rooms' do
     context 'with valid params' do
-      it 'creates a new Chat room' do
+      it 'creates a new chat room' do
         expect {
           post :create, params: valid_params
         }.to change(ChatRoom, :count).by(1)
@@ -33,7 +33,7 @@ RSpec.describe Api::V1::ChatRoomsController, type: :controller do
     end
 
     context 'with invalid params' do
-      it 'does not create a new Chat room' do
+      it 'does not create a new chat room' do
         expect {
           post :create, params: invalid_params
         }.not_to change(ChatRoom, :count)
@@ -66,12 +66,12 @@ RSpec.describe Api::V1::ChatRoomsController, type: :controller do
     end
   end
 
-  describe 'GET #index' do
+  describe 'GET /apis/v1/chat_rooms' do
     context 'without search params' do
       it 'should load a list of all existing chat room data' do
         get :index
         json_response = JSON.parse(response.body)
-        expect(json_response["chat_rooms"][0].keys).to match_array(['id', 'name', 'created_at', 'updated_at'])
+        expect(json_response['chat_rooms'][0].keys).to match_array(['id', 'name', 'created_at', 'updated_at'])
       end
     end
 
@@ -93,7 +93,7 @@ RSpec.describe Api::V1::ChatRoomsController, type: :controller do
     end
   end
 
-  describe 'GET #show' do
+  describe 'GET /apis/v1/chat_rooms/:id' do
     context 'with valid id' do
       it 'should load data from a specific chat room' do
         get :show, params: { id: chat_room.id }
