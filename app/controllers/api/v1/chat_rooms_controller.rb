@@ -17,21 +17,17 @@ module Api
       # List all available channels (chat rooms)
       # Search for channels by name or by username of users participating in a channel
       def index
-        if params[:search_chat_room].present?
-          @chat_rooms = ChatRoom.where("lower(name) LIKE ?", "%#{params[:search_chat_room].downcase}%").order('name ASC')
-        else
-          @chat_rooms = ChatRoom.all.order('name ASC')
-        end
+        begin
+          search_param = params[:search_chat_room] || ''
+          search_param = search_param.downcase
 
-        if @chat_rooms.empty? && params[:search_chat_room].present?
-          @chat_rooms = []
-          @chat_rooms << "No chat rooms found with the name #{params[:search_chat_room]}"
-        elsif @chat_rooms.empty? && params[:search_chat_room].blank?
-          @chat_rooms = []
-          @chat_rooms << "No chat rooms found"
-        end
+          @chat_rooms = ChatRoom.where("lower(name) LIKE ?", "%#{search_param}%")
+                                .order('name ASC')
 
-        render(json: { chat_rooms: @chat_rooms }.to_json)
+          render(json: { chat_rooms: @chat_rooms }.to_json)
+        rescue StandardError => e
+          puts "#{e.message}"
+        end
       end
 
       # View and send messages that persist within a certain channels (chat rooms) a user joins

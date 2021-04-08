@@ -88,7 +88,7 @@ RSpec.describe Api::V1::ChatRoomsController, type: :controller do
       it 'should load chat rooms based on search params' do
         get :index, params: { search_chat_room: 'Test Chat Room' }
         json_response = JSON.parse(response.body)
-        expect(json_response['chat_rooms'][0]).to eq('No chat rooms found with the name Test Chat Room')
+        expect(json_response['chat_rooms']).to eq([])
       end
     end
   end

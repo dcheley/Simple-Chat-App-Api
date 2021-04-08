@@ -1,4 +1,4 @@
-# HomeStars Chat API
+# Simple Chat App/API
 
 ## Setup Instructions
 To run this code on your local machine, follow the steps below:
@@ -23,6 +23,7 @@ rails db:migrate
 
 3. Install redis-server:
 Mac: https://medium.com/@petehouston/install-and-config-redis-on-mac-os-x-via-homebrew-eb8df9a4f298
+
 Ubuntu:
 ```
 sudo apt update
